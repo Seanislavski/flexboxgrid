@@ -1,0 +1,36 @@
+@import url(https://fonts.googleapis.com/css?family=Mountains+of+Christmas);
+@import url(https://fonts.googleapis.com/css?family=Cinzel);
+@import url(https://fonts.googleapis.com/css?family=Kameron);
+
+$base-font-size: 16; //will translate to 16px when html font-size is 62.5%
+ $h1-font-size: 32;
+ $h2-font-size: 26;
+
+@function rem-sizing($target-size){
+    @return ($target-size / 10);
+}
+
+@mixin font-size($font-size: $base-font-size) {
+    font-size: ($font-size) + px;
+    font-size: rem-sizing($font-size) + rem;
+}
+@mixin text-padding($text-padding: $base-pad-size, $pad2: false, $pad3: false, $pad4: false) {
+    @if $pad4 {
+      padding: ($text-padding) + px ($pad2) + px ($pad3) + px ($pad4) + px;
+      padding: rem-sizing($text-padding) + rem rem-sizing($pad2) + rem rem-sizing($pad3) + rem rem-sizing($pad4) + rem;
+    } @else if $pad3 {
+      padding: ($text-padding) + px ($pad2) + px ($pad3) + px;
+      padding: rem-sizing($text-padding) + rem rem-sizing($pad2) + rem rem-sizing($pad3) + rem;
+    } @else if $pad2 {
+      padding: ($text-padding) + px ($pad2) + px;
+      padding: rem-sizing($text-padding) + rem rem-sizing($pad2) + rem;
+   } @else {
+     padding: ($text-padding) + px;
+     padding: rem-sizing($text-padding) + rem;
+   }
+}
+
+@mixin padding($side, $padAmount: $base-pad-size) {
+   padding-#{$side}: ($padAmount) + px;
+   padding-#{$side}: rem-sizing($padAmount) + rem;
+}
